@@ -1,0 +1,105 @@
+#### We will deploy a prebuilt MERN app using kubernetes.
+- We will use mongodb and mongo express.
+	- In their env variables, we need:
+		- Mongodb: database
+			- root and its password are main parameters.
+		- Mongo express: This is an admin interface communication with mongodb.
+			- db name, db password and server are the main parameters.
+				- Server is the path where our database lies.
+- Installation
+	- `sudo eopkg install kubectl`
+		- This installs the kubectl client
+	- `sudo eopkg install minikube`
+		- This installs the kubectl server as well as worker nodes.
+- Made a folder called mern-kube.
+- Secrets.
+	- These are almost like environment variables.
+	- These are written in configuration file.
+	- Two formats
+		- YAML
+		- JSON
+	- Looking at kubernetes official documentation to write secret, there are many ways to write it.
+	- The username and password should be encoded as base64.
+	- We need these secrets as environment variables to the container which, the documentation tells as:
+		![[secret.yaml]]
+	- It is recommended to keep all the secrets for different applications separately.
+- Config.
+	- In kubernetes documentation, we can see configmaps.
+	- A configmaps is an API object used to store non-confidential data in key-value pairs.
+	- There should be no secrets in this file.
+	- It can include:
+		- Environment variables
+		- Command-line variables
+		- Configuration files in a volume
+	- We make these config files to ease the separation of databases with K8s.
+		- The database might be a part of cluster today but tomorrow it might be a stand-alone entity.
+		- Specifying a config file would make this migration easy.
+		- In the config, we haven't specified the URL initially since it will be given by the mongodb.
+		- We set a placeholder as "#come back here".
+		![[configmap.yaml]]
+- Deployment.
+	- Now we move towards deployment of our app.
+	- The deployment provides declarative updates for Pods and ReplicaSets.
+	- So we just tell in it, how many pods do we need and it will replicate.
+	- In this file, we have a label. This is the key-value player that we can refer to in other files.
+	- We set the port to 27017 since mongo uses this port.
+	- Below is the partial file till deployment.
+		![[mongo-app.yaml]]
+- Service.
+	- In kubernetes, the pods keep dying and kubernetes keeps them bringing back up.
+	- When a pod restarts, it gets its own IP address.
+	- So that's why we specify the network in the service.
+	- Kubernetes, through services, can give pods their own IP address, a single DNS name for a set of pods and can load balance across them.
+	- Now we define the services in the same file.
+	- We can use different file or the same one.
+		- --- in this file defines a break in the YAML file.
+		- here, we set the URL in the config file as the name in the metadata.
+		- Since the services can be in their own file, it has no idea where what app it should connect to.
+		- So the spec:selector:key-value pair should be the same as the deployment.
+			![[mongo-app 1.yaml]]
+- Since we have defined a single mongodb in these files, we can replicate the process for mongo-express.
+- The target port in services is the container port from deployment.
+- Since now, the following files are for the deployment of containers for internal network using cluster IP but can't be accessed by external network.
+- Now we need to configure the nodeport to make it accessible to the outside world.
+- NodePort can be set up on a range of ports only.
+	- 30000 - 32762
+	![[web-app 1.yaml]]
+- Run the minikube by going into /usr/bin/minikube directory, I ran it like a shell application.
+	- `minikube start`
+- We will not be interacting with minikube now.
+- It was only to provide a kubernetes server as well as set up worker nodes.
+- Now we will only communicate with it using kubectl.
+- `kubectl get pod`
+	- Initially, there will be no pods.
+	- We haven't created any pods.
+- So first, we need to make a pod by dumping our files into it.
+- We don't have to be in the same directory.
+- `kubectl apply -f secret.yaml`
+- `kubectl apply -f config.yaml`
+- `kubectl apply -f database.yaml`
+	- It should create a deployment as well as service.
+- `kubectl apply -f webapp.yaml`
+	- It should create a deployment as well as service.
+- `kubectl get pod -o wide`
+- `kubectl get secret`
+	- To get the secrets in our pods.
+- `kubectl get configmaps`
+	- To get the configmaps in our pods.
+- `kubectl get svc`
+	- To get the services in our pods.
+- `minikube ip`
+	- To get the IP of where this entire minikube is running
+	- But in recent updates of minikube, if we listen to `192.168.49.2:8081`, we won't be listening to anything.
+		- This is the IP, the above command returns with the port returned by svc command.
+	- So to expose our service to the outside world, minikube gives us another command.
+		- NodePort is still important to specify.
+		- The below command does the work.
+- `minikube service <webapp service name from the svc>`
+- It takes me directly to the address of the app. It worked fine but couldn't find the user and password.
+- `kubectl log <service name>`
+	- Made the issue known along with user and password which was set by default in a configuration file and not mine one.
+- To remove everything, we can:
+	- `kubectl delete secrets --all`
+	- `kubectl delete deployment --all`
+	- `kubectl delete service --all`
+	- `kubectl delete configmap -all`

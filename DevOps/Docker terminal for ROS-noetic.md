@@ -1,0 +1,15 @@
+- Make [[Dockerfile]]
+- ```cd dockerfiles/ros_noetic```
+- ```docker build -t ros_noetic_image .```
+- ```cd ~/ros_noetic_volume```
+- ```docker run -it --name ros_noetic_container -v $PWD:/event_data ros_noetic_image```
+- Networking with docker. We can do it in terminal command.
+	- ```docker run -it --network=host --ipc=host --name ros_noetic_container -v $PWD:/event_data ros_noetic_image```
+- If we are not using the --ipc command, we can run the following to access #Graphics_on_docker:
+	- ```docker run -it --network=host --ipc=host --name ros_noetic_container -v $PWD:/event_data -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY --privileged ros_noetic_image```
+- #Devices_in_docker
+	- ```docker run -it --network=host --ipc=host --name ros_noetic_container -v $PWD:/event_data -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY --privileged --device=/dev/device_path ros_noetic_image```
+	- A complete command to add all inputs to docker:
+		- ```docker run -it --network=host --ipc=host --name ros_noetic_container -v $PWD:/event_data -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY -v /dev:/dev --device-cgroup-rule='c *:* rmw' ros_noetic_image```
+	- Using privileged mode:
+		-  ```docker run -it --network=host --ipc=host --name ros_noetic_container -v $PWD:/event_data -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY -v /dev:/dev --privileged ros_noetic_image```               #Privileged_mode 

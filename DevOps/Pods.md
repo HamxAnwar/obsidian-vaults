@@ -1,0 +1,12 @@
+- ```kubectl run <pod name> --image=<image name>```
+- ```kubectl get pods```
+- ```kubectl describe pod <pod name>```
+	- This should be the first command to run while troubleshooting a pod.
+- ```kubectl logs -f <pod name>```
+	- To see the logs of the pod.
+- ```kubectl delete pods <pod name>```
+- ```kubectl exec -it <pod name> -- bash```
+	- To go inside the pod and interact with it.
+- To get more information, we can do:
+	- ```kubectl get pods --owide```
+	- 

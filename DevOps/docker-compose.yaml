@@ -1,0 +1,7 @@
+version: "2.21.0"
+services:
+  website:
+    image: nginx
+    ports:
+      - "8081:80"
+    restart: always

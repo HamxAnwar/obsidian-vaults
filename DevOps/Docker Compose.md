@@ -1,0 +1,20 @@
+- To run a container, we can:
+	- ```docker run --name <container name> -itd -p 80:80 <image name>```
+- We can do the same using docker compose.
+	- It can run not only one container but multiple containers with a single file and terminal commands.
+	- In other words, we can say that writing the above command in a  file can be called docker compose.
+	- We make a folder dedicated to a single docker-compose file.
+	- Try to keep the name docker-compose.yaml since it is the default that docker looks out for.
+	- A basic docker compose file for nginx with default networking is as follows:
+		![[docker-compose.yaml]]
+		- ```docker compose up -d```
+		- ```docker compose down```
+		- ```docker compose stop```
+		- ```docker compose start```
+	- We can also create networks for our containers.
+		- An updated file containing two containers and a network is attached below.
+		![[docker-compose 1.yaml]]
+		- ```docker network ls```
+		- ```docker network inspect <network name>```
+	- When we update the file, it only updates the file and create the new things instead of recreating the whole thing.
+- Next we will go with deploying [[Wordpress with docker compose]]

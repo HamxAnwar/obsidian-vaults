@@ -1,0 +1,52 @@
+- ```kubectl get nodes```
+- ```kubectl get pods -A```
+	- Outputs all the pods inside the cluster.
+	- Give all the components of the cluster such as apiServer, networking related stuff, etc.
+- ```kubectl get pods -A -owide```
+	- Gives all the components with the nodes where they are running.
+	- We can see that the controller manager, API-server, etcd, all run on the control plane.
+- ```kubectl run <pod name> --image=<image name>```
+- When we run a pod, we can get a YAML file through dry run.
+	- ```kubectl run <pod name> --image=<iamge name> --dry-runclient -oyaml```
+- ```kubectl api-resources```
+	- Give the list of all the APIs.
+- #Namespaces
+	- For multiple teams, if the dev team is using an image while the testing team changes the image for some testing purpose, it will create issues.
+	- Thus we create namespaces.
+	- We can create same pod names in different namespaces.
+	- Dev and test teams can run the same images in their own respective namespaces without conflicting.
+	- To create namespaces:
+		- ```kubectl create ns <namespace>```
+	- We can also deploy pods in a certain namespace such as:
+		- ```kubectl create deploy <pod name> --image=<image name> -n <namespace>```
+	- To get the namespaces, we can use:
+		- ```kubectl get ns```
+	- There are four namespaces in kubernetes.
+		- default
+			- This namespace contains the user applications.
+			- kubectl get pod
+		- kube-node-lease
+			- Contains the heartbeat of the nodes.
+			- Every node has lease objects.
+			- ```kubectl get lease -n kube-node-lease```
+			- Each node will have a lease
+		- kube-public
+			- kube-public contains the cluster info and certificate data.
+			- ```kubectl get cm -n kube-public```
+		- kube-system
+			- Runs all the system pods.
+			- Reserved for the system.
+			- We should not run our pod here.
+	- In a single namespace, to see what pods are running, we use:
+		- ```kubectl get pods -n <namespace>```
+	- To get the description of namespaces:
+		- ```kubectl describe ns <namespace>```
+		- We can also do it in declarative format.
+			- ```kubectl create ns demo --dry-run=client -oyaml```
+	- Deleting namespace:
+		- ```kubectl delete ns <namespace>```
+	- Switching context
+		- ```kubectl get pods``` only show the pods in default ns.
+		- To switch context, we do:
+			- ```kubectl config set-context --current --namespace=<namespace>```
+			- Now the ```kubectl get pods``` will show the pods in <namespace>.

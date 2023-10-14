@@ -1,0 +1,109 @@
+- ```ip a```
+	- We will have loop-back address and a main address or a wireless address in case of WiFi.
+	- We will also have a ```docker0``` interface.
+		- It is the default network bridge in docker.
+- ```docker network ls```
+	- We will have initially three network interfaces.
+		- bridge
+		- host
+		- none
+	- We will also have driver section in this command. This is the type of network.
+- The default bridge ^9fc369
+	- We run three containers with the command.
+		-  ```docker run -itd --rm --name <container name> <image name>```
+		- But we didn't specify any network.
+		- Thus what docker did was make three virtual ethernet interfaces and connect them through the docker0 interface.
+		![[Pasted image 20231012235957.png]]
+		- We can confirm this using the commands:
+			- ```ip a``` and ```bridge link```
+		- ```docker inspect <network name>```
+			- Inspect about the network.
+			- What containers are using the interface.
+			- What is the dedicated IP for all these containers.
+		- Using the default network, docker copies the ```/etc/resolve.conf``` file from host and pastes it into all the containers.
+			- This makes them use the same DNS.
+		- But how does the docker0 interface makes all the containers talk to the web.
+			- It uses NAT masquerade.
+			- This is the default network.
+		- One of the container is nginx. It is a website and uses port 80 by default. Can it access this port?
+			- No. Because we haven't configured the ports.
+		-  ```docker run -itd --rm -p 80:80 --name <container name> <image name>```
+			- This tells docker to map containers port 80 to our host's port 80.
+			- it is recommended to use another method for networking and create your own network.
+- User-define bridge  ^d9efec
+	- ```docker network create <network name>```
+		- This creates a new docker network
+	- ```docker network ls```
+	- Now when we run the container, we will define:
+		- `docker run -itd --r --network <network name> --name <container name> <image name>`
+		- We can inspect the network to get its information.
+		- Now why does docker recommend a user-defined bridge?
+			- Due to network isolation.
+			- All the containers run with a user-defined network cannot communicate with the containers in the default network.
+			- Also only in the user-defined network, if we have two containers, we can ping them either by their name or IP address.
+- Host bridge ^b283cd
+	- Host network exist by default.
+	- It is the same network as the host machine.
+	- `docker run -itd --rm --network host --name <container name> <image name>`
+	- In this case, the container shares the IP address, ports, etc. with the host. So we don't need port forwarding.
+	- In other sense, this container would be like an application that deploys on the host and uses its own networking.
+	- De-merits:
+		- No network isolation.
+- MAC VLAN bridge ^4a8bb6
+	- MAC VLAN has two modes.
+	- Mode 1: MAC VLAN - bridge ^89e443
+		- What if we could remove the virtual/docker networks and can deploy the containers to connect to the physical network.
+		- To make a MAC VLAN network, we can:
+			- `docker network create -d macvlan --subnet <your home network subnet like 192.168.100.0/24> --gateway <gateway IP like 192.168.100.1> -o parent=<ethernet interface like enp9s0> <name of network>`
+		- While running the containers, we have to define the container's IP address ourselves. So the command becomes:
+			- `docker run -itd --rm --network <MAC VLAN network name> --ip <IP address> --name <container name> <image name>`
+			- But there is a downside.
+				- It cannot ping any device inside the network nor talk to the network.
+				- All containers are getting their own MAC address but all are connected to the same switch.
+				- This might not be allowed in your gateway or host.
+				- This is called "promiscuous mode".
+			- First we need to enable the promiscuous mode on the host network interface.
+				- `sudo ip link set enp9s0 promisc on`
+				- then execute the container.
+				- If it still doesn't work, we need to go up the chain, and tackle the gateway or the virtual box if its being used and reboot the host.
+				- **NOTE**: Mine doesn't work for the home network. May be promiscuous mode is disabled on my router.
+	- Mode 2:  MAC VLAN-802.1q ^17215f
+		![[Pasted image 20231013221545.png]]
+		- It connects the containers directly to the network as mode 1.
+		- We can also specify sub-interfaces.
+		- To make host network in this mode:
+			- `docker network create -d macvlan --subnet 192.168.100.0/24 --gateway 192.168.100.1 -o parent=enp9s0.20 macvlan_name20`
+			- We can see that we just added the network sub-interface with the parent interface that is enp9s0.20
+			- For this, we have to set up trunking.
+				- **Trunking** is a technique used in data communications transmission systems to provide many users with access to a network by sharing multiple lines or frequencies. As the name implies, the system is like a tree with one trunk and many branches. Trunking is commonly used in very-high-frequency (VHF) radio and telecommunication systems.
+	- We can also specify ip-range in the network creation command to specify a range of network to keep the containers in a certain IP pool.
+	- Demerits:
+		- The MAC address thing. We have to enable promiscuous mode.
+		- If we do not specify the IP address for the container, it will not use the DHCP server of the gateway but docker will se its own DHCP and give the container an IP address.
+		- This may create a conflict.
+		- These issues can be solved with the next network type.
+- IP VLAN ^03463c
+	- IP VLAN does the same as MAC VLAN.
+	- All the containers in this network will have its own network but shares the MAC address with the host.
+	- It is fine until and unless the router/gateway has issue with a single device (MAC address) having multiple IP addresses.
+	- It also has two modes.
+		- Mode 1: L2 ^c05eff
+			- `docker network create -d ipvlan --subnet 192.168.100.0/24 --gateway 192.168.100.1 -o parent=enp9s0 test_ipvlan`
+			- It didn't work on my laptop. I believe, my kernel/OS do not let the MAC address sharing or my gateway has issue with single MAC address.
+		- Mode 2: L3 ^c9c2f5
+			- It is all about layer 3, hence L3.
+			- So the containers in this will connect to the host as if host was a router.
+			![[Pasted image 20231013232901.png]]
+			- Here any machine on my home local network cannot access the two newly build networks until and unless I specify them in my routing table.
+			- This gives the user a better control.
+			- If we are creating more than one network, we can:
+				- `docker network create -d ipvlan --subnet 192.168.20.0/24 -o parent=enp9s0 -o ipvlan_mode=l3 --subnet 192.168.30.0/24 test_ipvlan_l3`
+					- We do not specify the gateway.
+				- Initially, all the networks can ping each other irrespective of which subnet they are a part of.
+				- They cannot communicate with the outside network.
+				- To make them communicate, we have to define these sub-networks in our router's routing table.
+- Overlay network ^236168
+	- This network is used if we have multiple hosts and multiple containers are deployed on them using kubernetes or docker swarm.
+- None network ^e12785
+	- It is already present by default.
+	- Any container in this network will only have a loopback address and would not be a part of any network.
