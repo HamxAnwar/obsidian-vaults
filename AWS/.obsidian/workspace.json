@@ -1,19 +1,19 @@
 {
   "main": {
-    "id": "4b576353ee68b5fb",
+    "id": "4ea50f49ec3de5bc",
     "type": "split",
     "children": [
       {
-        "id": "a3aa53b9318f1ecf",
+        "id": "025773c64966fa9f",
         "type": "tabs",
         "children": [
           {
-            "id": "8a5764329b4309bf",
+            "id": "8535695cda703354",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2023-10-19.md",
+                "file": "Compute in the cloud (EC2).md",
                 "mode": "source",
                 "source": false
               }
@@ -25,15 +25,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "e7666af52f7796cf",
+    "id": "862ff7dd52714107",
     "type": "split",
     "children": [
       {
-        "id": "ed0356f80d2fc93b",
+        "id": "deaf6f7dfe686720",
         "type": "tabs",
         "children": [
           {
-            "id": "22e473a79b7a2bef",
+            "id": "084f0b92311d8b6d",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -43,7 +43,7 @@
             }
           },
           {
-            "id": "3c3349d242bcfee7",
+            "id": "c4e571b8e10ef8e4",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -58,7 +58,7 @@
             }
           },
           {
-            "id": "bed131a729067c87",
+            "id": "94ea70ca91052a3c",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -69,23 +69,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 252.5
+    "width": 200
   },
   "right": {
-    "id": "ff14d6023df23a17",
+    "id": "a9ba45abfd0e6851",
     "type": "split",
     "children": [
       {
-        "id": "d81b5032bbc134c0",
+        "id": "f6c7aa5e9ace121a",
         "type": "tabs",
         "children": [
           {
-            "id": "102e5b2c6977f25c",
+            "id": "4f6c249a542347d9",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2023-10-19.md",
+                "file": "Compute in the cloud (EC2).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,19 +97,19 @@
             }
           },
           {
-            "id": "76f15b58efc9650e",
+            "id": "ed531a719d8091ea",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2023-10-19.md",
+                "file": "Compute in the cloud (EC2).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "cd7bd8a7bf850bf5",
+            "id": "cadb9938324d719b",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -120,12 +120,12 @@
             }
           },
           {
-            "id": "b2a5cfd63201df94",
+            "id": "93a89e15357def4b",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "2023-10-19.md"
+                "file": "Compute in the cloud (EC2).md"
               }
             }
           }
@@ -146,54 +146,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8a5764329b4309bf",
+  "active": "8535695cda703354",
   "lastOpenFiles": [
-    "Thesis work.md",
+    "Introduction to Amazon Web Services.md",
+    "Compute in the cloud (EC2).md",
+    "Pasted image 20231021232300.png",
+    "Pay-as-you-go pricing model.md",
+    "2023-10-21.md",
     "2023-10-19.md",
-    "Dockerfile 1",
-    "Docker.md",
-    "thesisbot.pdf",
-    "Docker terminal for ROS-noetic.md",
-    "Dockerfile for ROS-noetic.md",
-    "Docker networks.md",
-    "Docker basics.md",
-    "2023-10-18.md",
-    "Docker swarm.md",
-    "2023-10-17.md",
-    "demo.yaml",
-    "Pasted image 20231017015340.png",
-    "Pasted image 20231017013805.png",
-    "Pasted image 20231017013455.png",
-    "2023-10-15.md",
-    "2023-10-14.md",
-    "Docker Compose.md",
-    "Docker Swarm vs Kubernetes.md",
-    "Untitled",
-    "2023-10-13.md",
-    "Kubernetes implementation.md",
-    "Kubernetes.md",
-    "web-app 1.yaml",
-    "web-app.yaml",
-    "mongo-app 1.yaml",
-    "mongo-app.yaml",
-    "configmap.yaml",
-    "secret.yaml",
-    "Pasted image 20231014150209.png",
-    "Pasted image 20231014150112.png",
-    "Pasted image 20231014150019.png",
-    "^secrets.md",
-    "Labels and selectors - Kubernetes.md",
-    "Imperative commands - Kubernetes.md",
-    "Pasted image 20231013232901.png",
-    "Pasted image 20231013221545.png",
-    "2023-10-11.md",
-    "Docker networks^d9efec.md",
-    "^Default network.md",
-    "2023-10-09.md",
-    "Pasted image 20231012235957.png",
-    "Wordpress with docker compose.md",
-    "Pasted image 20231012180824.png",
-    "Compose.md",
-    "Untitled.canvas"
+    "2023-10-20.md"
   ]
 }

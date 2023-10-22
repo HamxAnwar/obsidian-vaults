@@ -1,0 +1,14 @@
+![[Dockerfile 1]]
+- `docker build -t ros_thesis_image .`
+- `docker run -it --network host --ipc host -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY -v /dev:/dev --privileged --name thesis_container -v /home/hamza/ros_thesis_volume:/root/ros_thesis ros_thesis_image`
+- `mkdir -p event_ws/src`
+- `cd event_ws`
+- `catkin build`
+- `source ~/.bashrc`
+- Install the RPG_DVS_ROS
+- Install libcaer by manually adding the repository.
+- On host:
+	- `xhost +local:`
+- Test display using RVIZ.
+- `apt install iproute2`
+- Check IP.

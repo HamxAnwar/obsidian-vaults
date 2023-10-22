@@ -5,6 +5,7 @@
 	- In other words, we can say that writing the above command in a  file can be called docker compose.
 	- We make a folder dedicated to a single docker-compose file.
 	- Try to keep the name docker-compose.yaml since it is the default that docker looks out for.
+	- We can specify build parameter in the compose file instead of the image to build our own dockerfile.
 	- A basic docker compose file for nginx with default networking is as follows:
 		![[docker-compose.yaml]]
 		- ```docker compose up -d```

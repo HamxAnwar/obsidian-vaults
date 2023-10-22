@@ -1,4 +1,9 @@
 ![[Dockerfile]]
+- A docker file contains of 3 steps:
+	- 1: The base image.
+	- 2: The required software that we need to install.
+	- 2.5: The configuration of the required software.
+	- 3: Commands to run on the start.
 
 - For linux
 	- dialout group: access serial ports.

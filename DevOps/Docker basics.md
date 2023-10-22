@@ -1,59 +1,66 @@
 - Installation
 	- www.docker.com
 	- By default docker runs as root. Add your user to docker
-		- ```sudo groupadd docker```
-		- ```sudo usermod -aG docker $USER```
-		- ```sudo systemctl enable docker```
+		- `sudo groupadd docker`
+		- `sudo usermod -aG docker $USER`
+		- `sudo systemctl enable docker`
 	- Reboot
 - Images
 	- We define required images using a Dockerfile.
+	- Most of the command in Dockerfile is made into a temporary container and then result is replaced with the real container.
+	- All the temporary containers are placed in cache.
+		- If we build another image with the same Dockerfile, it will use the cache until a different or new command is executed.
+		- All later commands will make a temporary container.
 	- It could contain an already built image.
 	- It might also contain instructions to run terminal commands, etc.
 - Containers
 	- We can use images to run a container. A container is like a system where an OS is installed with required applications.
 - Commands
-	- ```docker image pull <image name>```
+	- `docker image pull <image name>`
 		- To pull prebuilt images from docker hub.
-	- ```docker image rm -f <image name>```
+	- `docker image rm -f <image name>`
 		- Removing image.
-	- ```docker image ls```
+	- `docker image ls`
 		- Lists all images.
-	- ```docker run <image name>```
+	- `docker run <image name>`
 		- flashes the images like its new system. All files made in any previously made container are removed.
-		- ```docker run -it <image name>```
+		- `docker run -it <image name>`
 			- -it = interactive/tty to give an interactive terminal of the container.
-		- ```docker run -d <image name>```
-			- ```-d``` runs the container in detach mode so it will run in the background.
-		- ```docker container ls``` or ```docker ps```
+		- `docker run -d <image name>`
+			- `-d` runs the container in detach mode so it will run in the background.
+		- `docker container ls` or `docker ps`
 			- lists all running containers.
-	- ```docker container ls -a``` or ```docker ps -a```
+	- `docker container ls -a` or `docker ps -a`
 		- lists all containers.
-	- ```docker start <container name>```
+	- `docker start <container name>`
 		- Start a previously build container.
-	- ```docker stop <container name>```
+	- `docker stop <container name>`
 		- Stop a previously build container like shutdown.
-	- ```docker container rm <container name>```
+	- `docker container rm <container name>`
 		- Removing containers.
-	- ```docker run --rm <image name>```
+	- `docker run --rm <image name>`
 		- Removing container after running it one time.
-	- ```docker run --name <self-given container name> <image name>```
+	- `docker run --name <self-given container name> <image name>`
 		- Docker gives random names to the running containers.
 		- We can give names ourselves to make them easy to remember with above command.
-	- ```docker exec -it <container name>```
+	- `docker exec -it <container name>`
 		- To access another terminal for already running container.
-	- ```docker build -t <image name> <path_to_dockerfile>```
+	- `docker build -t <image name> <path_to_dockerfile>`
 		- To built a [[Dockerfile]] to get required image as the one attached.
+		- Usually, to name the image, docker documentation says to put it like:
+			- <username_for_docker_hub>/<image_name>
+		- If we see an alpine tag in docker image tags, that means a bare minimum image which stripped down of all the unnecessary library.
 	- We can use volumes to make directories from our own systems to mount on docker containers.
 		- E.g: I made a ros_noetic_volume folder containing all the datasets and codes.
 		- Running container for this above volume:
-			- ```cd ros_noetic_volume```
-			- ```docker run -it -v $PWD:/<name_of_mounting_folder_for_container> <image name>```
+			- `cd ros_noetic_volume`
+			- `docker run -it -v $PWD:/<name_of_mounting_folder_for_container> <image name>`
 		- Since the data is persistent on our machine and docker container, we can change the file on our machine and it automatically changes inside the container.
 		- But if our libraries are not installed on our machine, we would neither get the code completions nor we can test the app.
 		- So we need to use our IDE inside the container.
 		- We can use docker extension and dev containers extension.
 	- #run_a_container_with_a_specific_user
-		- ```docker run -it --user hamza $PWD:/<name_of_mounting_folder_for_container> <image name>```
+		- `docker run -it --user hamza $PWD:/<name_of_mounting_folder_for_container> <image name>`
 	- Entrypoints/Command
 		- Making a dockerfile, we can make also use entrypoints and commands to perform various tasks.
 		- We can create a bash script as our entrypoint that sets up our runtime environment.
@@ -64,9 +71,9 @@
 		- It is important for development environment.
 		- If we are running a container as a user that matches the host ((--ipc command)), we already have graphical access.
 		- If not, we can do the following.
-			- run ```xhost +``` to give permission to all users.
-			- run ```xhost +local:``` to give permission to local users.
-			- run ```xhost +local:<username>``` to give permission to a specific user.
+			- run `xhost +` to give permission to all users.
+			- run `xhost +local:` to give permission to local users.
+			- run `xhost +local:<username>` to give permission to a specific user.
 			- Then run the command in [[Docker terminal for ROS-noetic]].
 	- [[Docker for hardware]]
 		- We discuss three common devices.
@@ -74,23 +81,23 @@
 			- Depth camera
 			- SBC
 		- #Privileged_mode
-			- As the display wasn't working, I added the privileged mode in my ```docker run``` command to access display and graphical interface. [[Docker terminal for ROS-noetic]] #Graphics_on_docker 
+			- As the display wasn't working, I added the privileged mode in my `docker run` command to access display and graphical interface. [[Docker terminal for ROS-noetic]] #Graphics_on_docker 
 			- It is easy to add this mode while mapping the hardware but it exposes many low level stuff that docker is meant to be blocked off from.
 			- So we will discuss some easier methods first.
 		- How linux handle devices?
 			- Everything in linux is a file.
-			- These files are in a directory called ```/dev```
+			- These files are in a directory called `/dev`
 			- Docker needs to know what is a device and its path.
-			- For starters, we can add the ```device``` argument to pass it to the run command. [[Docker terminal for ROS-noetic]] #Devices_in_docker 
-			- Also, we can add all input devices by giving ```--devices=/dev/input``` as the argument. This will add all devices on this path to docker but won't be able to add devices added later on.
+			- For starters, we can add the `device` argument to pass it to the run command. [[Docker terminal for ROS-noetic]] #Devices_in_docker 
+			- Also, we can add all input devices by giving `--devices=/dev/input` as the argument. This will add all devices on this path to docker but won't be able to add devices added later on.
 			- Thus, to make the all input devices available, we can map the inputs and modify the command as follows
-				- ```docker run -it --network=host --ipc=host --name ros_noetic_container -v $PWD:/event_data -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY -v /dev/input_device:/dev/input_device --device-cgroup-rule='c major_id:minor_id rmw' ros_noetic_image```
+				- `docker run -it --network=host --ipc=host --name ros_noetic_container -v $PWD:/event_data -v /tmp/.X11-unix:/tmp/.X11-unix:rw --env=DISPLAY -v /dev/input_device:/dev/input_device --device-cgroup-rule='c major_id:minor_id rmw' ros_noetic_image`
 				- A complete command to add all the input devices to the docker container is shared in [[Docker terminal for ROS-noetic]] #Devices_in_docker 
 			- What about depth camera?
-				- Type ```lsusb``` to show all the usb interfaces.
+				- Type `lsusb` to show all the usb interfaces.
 				- A depth camera will show as, for example, Intel Movidius MyriadX
-				- This is on ```/dev/bus port```. We can add another argument to our run in this case.
-					- ```-v /dev/bus/usb:/dev/bus/usb --device-cgroup-rule='c 189:* rmw'```
+				- This is on `/dev/bus port`. We can add another argument to our run in this case.
+					- `-v /dev/bus/usb:/dev/bus/usb --device-cgroup-rule='c 189:* rmw'`
 					- For this device, a docker image is already given.
 				- We mapped all the usb bus devices and allowed control to all the devices with major ID = 189.
 				- Mapping all the dev as previously discussed with * : * would also work.
@@ -98,7 +105,7 @@
 				- Sometimes, even using privileged mode cannot make us access the device. [[Docker terminal for ROS-noetic]]] #Privileged_mode 
 				- The reason is the user is not in the dialout group. So we want to add the docker host user to the dialout group. So we change the [[Dockerfile]].
 				- If we have multiple devices, we wouldn't be able to add all the devices one by one.
-				- We can use the privileged mode or mapping all the ```/dev:/dev``` and ```*:*``` as previously discussed to make all devices available.
+				- We can use the privileged mode or mapping all the `/dev:/dev` and `*:*` as previously discussed to make all devices available.
 - VSCode for Docker
 	- We can use two extensions for VSCode.
 		- Docker

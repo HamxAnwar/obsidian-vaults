@@ -1,0 +1,41 @@
+- AWS offers a massive range of service for every sort of business.
+	- Compute
+	- Storage
+	- Network security
+	- Robot development
+	- Blockchain
+	- Machine learning
+	- AI
+- We will learn:
+	- Benefits of AWS.
+	- On-demand delivery vs cloud deployments.
+	- [[Pay-as-you-go pricing model]]
+- So what is a cloud compute model?
+	- All modern computing centers around a client-server model.
+		- A client can be a web browser or a desktop application.
+		- A client makes a request.
+		- A server response to that request.
+		- In the world of computing, a request could be anything from analyzing weather to images to machine learning model training/deployment or as simple as asking for the score in an online game, or a funny video.
+		- In AWS, the server is referred as Amazon Elastic Compute Cloud ( #Amazon-EC2 )
+		- The process may have three basic steps:
+			- Request from client.
+			- Validation (if the request is originated from an authentic source or if the request is fine).
+			- Response from server.
+		- So what is cloud computing?
+			- It is the on-demand delivery of IT resources (compute, storage, etc.) over the internet with pay-as-you-go pricing.
+		- Deployment model for cloud computing
+			- A company must consider:
+				- required application components
+				- resource management tools
+				- legacy IT infrastructure requirements
+			- Three deployment models for cloud computing:
+				- Cloud based
+				- On-premises
+				- Hybrid
+			- Benefits of cloud computing:
+				- Trade upfront expenses for variable expense.
+				- No spending money in data centers.
+				- No guessing capacity. Increase on the go.
+				- Benefit from massive economies of scale.
+				- Flexibility.
+				- Go global for customer's anywhere.

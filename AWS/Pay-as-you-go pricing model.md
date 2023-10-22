@@ -1,0 +1,3 @@
+- In case of compute or storage, we can start or stop using an instance at any time.
+- We only need to pay for the time, we use those instances.
+- With stopping those instances, we do not need to pay further.

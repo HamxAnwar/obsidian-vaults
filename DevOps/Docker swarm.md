@@ -1,0 +1,58 @@
+- It is an orchestration service within docker to deploy multiple containers and manage them.
+- A swarm is any cluster of containers.
+	- We can use docker swarm to manage this cluster of containers.
+- Docker swarm architecture:
+	![[Pasted image 20231017013455.png]]
+	- Docker engine communicates with the manager node to query or run commands and communicate with manager/worker nodes.
+	- Any management task is carried out through manager node.
+	- The worker nodes deploy various services/containers that will be managed by the manager node.
+	- All of this is connected by an overlay network.
+	- Also:
+		![[Pasted image 20231017013805.png]]
+	- A task is basically assigning various tasks to the workers.
+		- What each worker node will perform.
+	- A service is a part of the features in an application.
+		- Any application will comprise of multiple services.
+		- All services will run on specific workers.
+- Common commands:
+	- First we have to initialize the docker swarm.
+		- `docker swarm init --advertise-addr <IP addr of manager node>`
+		- The above command gives a command itself to add workers to the initiated swarm.
+			![[Pasted image 20231017015340.png]]
+	- `docker node ls`
+		- To know if any node is running in our swarm, we can run in our manager node.
+	- `docker info`
+		- Give the information of the machine it runs on.
+	- `docker swarm leave`
+		- It will make the machine leave the swarm.
+		- It will change their status for `docker node ls` but would still show.
+		- To remove the worker node from manager node:
+			- `docker node rm <node ID>`
+	- `docker swarm leave --force`
+		- To make the manager leave the swarm.
+	- `docker swarm join-token <worker/manager>`
+		- If we have cleared out the screen and want the joining command again, we can use above.
+	- Ok! Now we have a swarm up and running but there is no container/service running in them. To run a service, we use:
+		- `docker service create --name <service name> --replicas <no of replicas> --publish 80:80 <image name>`
+	- `docker service ls`
+		- Gives name of the containers, services are deployed at.
+	- `docker service ps <name/ID of the container>`
+		- Information about current state of those services.
+	- `docker rm -f <service name>`
+		- Removes a service from the container.
+		- We can see using `docker ps` that if a service is removed, docker swarm will try to run it back automatically.
+	- Load balancing:
+		- If we have 2 nodes and both are running one service. Removing one node using `docker swarm leave` will jump both services on the remaining node.
+		- We can use `docker service rm <service name>` to completely remove the services.
+	- `docker service inspect --pretty demo`
+		- Gives information about a service.
+- Docker stack
+	- It needs a YAML file.
+		![[demo.yaml]]
+		- It is a bare minimum file.
+	- `docker stack deploy -c <name of YAML file> <name of stack>`
+		- It creates a default network and the services defined in the file.
+	- But there is only one replica. What if now, we want to scale our replicas?
+		- `docker service scale <service name/ID>=<number of replicas>`
+	- `docker service update --image httpd:latest httpd`
+		- To update the service to a newer image.
