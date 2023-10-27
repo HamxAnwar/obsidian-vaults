@@ -1,0 +1,70 @@
+- Many ways to represent event based data.
+	- Individual events
+		- Good for processing with SNNs.
+	- Points set
+		- 3D - point set with space-time information.
+		- 2D - Evolving point set on image plane to give the shape of the image.
+		- May introduces latency and might discard polarity.
+	- Event frames/2D point set
+		- Histogram
+			- Pixelwise counting of events
+		- Motion compensated event frames
+		- Time surface - seperately discussed
+		- Event selection for frames:
+			- Sliding window
+				- Events at constant time intervals
+				- Constant number of events
+				- Adaptive area-event-number
+			- Merits:
+				- Compatible with conventional computer vision algorithms
+					- Intuitive and informative interpretation as they look like edge maps.
+					- Edges contain a lot of information of the scene.
+					- Frames from events could be asynchronous and with HDR.
+			- De-merits
+				- Not the event based paradigm
+				- Quantizes the event timestamps
+				- Power utilization for creating frames
+				- Latency is introduced
+				- No. of event to use? Requires tuning.
+		- Brightness Increment Images
+			- Obtained by accumulating event polarities.
+			- Polarity is used
+			- Intuitive interpretation
+			- Use cases:
+				- Stereo depth estimation
+				- Camera pose estimation
+				- Optical flow estimation
+				- Grayscale frame prediction, etc.
+		- Time surfaces
+			- A time map image.
+			- Every pixel value in the function of time value of the last event at that pixel.
+			- Also called motion-history images.
+			- It tells that how far-away in the past, the event happened.
+			- Advantages:
+				- Rich temporal information
+				- Intensity is a function of motion
+				- Can be robust to noise using local filtering
+				- Asynchronous update with every event
+				- Conventional CV compatible
+			- Demerits
+				- Expensive
+				- Only one value per pixel
+				- Not good for textured scenes
+					- More pixel overwrite
+	- Voxel grid
+		- 3D histogram of events
+		- Discretized space-time representation
+		- Voting (Insertion) mechanism:
+			- Nearest neighbor
+				- Each votes for one cell only
+			- Linear
+				- Each event splits its vote according to distance to neighboring voxels.
+				- Produces smoother histogram
+		- Advantages
+			- Better space-time structure preservance than 2D
+			- Compatible with conventional CV-DL algorithms.
+		- Disadvantages
+			- A lot of memory
+			- Time is still quantized
+	- Motion-Compensated event frames
+	- Reconstructed intensity images
