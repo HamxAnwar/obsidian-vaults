@@ -1,0 +1,15 @@
+- Containerization platform from RedHat enterprise.
+	- Alternative to docker.
+		![[Pasted image 20231028210547.png]]
+	- Could be secure than docker.
+		- Daemon-less container engine.
+			- Docker uses an architecture with daemon.
+			- Docker uses some background process (docker daemon) to listen to the instructions provided by the user.
+			- Podman directly establishes communication between the CRI and the infrastructure.
+		- Rootless architecture
+			- Docker containers as well as the daemon runs as a root process.
+			- Podman containers are not always root.
+				- Can be as root or rootless mode.
+				- It doesn't mean the user of the container to be root or rootless but every container that we spin with docker, it uses a root process to run it even if we run it as a simple user in group docker.
+				- This is because docker daemon is a root process.
+- Lets start with [[Pods with Podman]]

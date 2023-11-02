@@ -1,0 +1,39 @@
+- Pods are a group of one of more containers sharing the same network, PID and IPC namespaces.
+- Pods are similar to kubernetes-pods.
+- A single pod can run multiple containers.
+- Commands:
+	- `podman pods --help`
+		- Provides a list of all commands and help with `podman pod` command.
+	- `podman pod create --name <pod_name>`
+		- Creates an empty pod with the given name.
+		- When you create an empty container, podman automatically creates an infra-container.
+			- This container is based on a k8s image.
+		- This container:
+			- Holds all namespaces associated with the pod.
+			- Allow podman to connect other containers to the pod.
+	- `podman run -dt --pod <pod_name> <container_image_name>`
+		- Adding a new container with the created pod.
+	- `podman pod ls`
+		- It lists all the created pods.
+	- `podman ps -a --pod`
+		- Lists all the containers in the pod.
+	- `podman pod start <pod_name>`
+		- Starts a pod
+	- `podman pod stop <pod_name>`
+		- Stops a pod
+	- `podman pod rm <pod_name>`
+		- Removes a pod.
+		- Removes the pod as well as its containers.
+		- We need to stop the pod first or can use the --force flag.
+	- We can also run a container in a new pod with the command as below:
+		- `podman run -dt --pod new:<pod_name> -p _port external_:_port internal_ <container_name>`
+- Another feature of podman is to generate k8s YAML manifest files from the podman pods.
+	- Can save developers time and effort.
+	- A kubernetes file is an instruction file on how to create and manage pods, deployments, services, configmaps, etc.
+	- The manifest file contains details about which image to use, environmental variables and linkage of everything all together.
+	- `podman generate kube <pod_name>`
+	- `podman generate kube <pod_name> >> <file_name>.yaml`
+	- We can also play kubernetes pods from the file above with the command below:
+		- `podman play kube <file_name>.yaml`
+		- This lets to test our kubernetes configuration locally before deploying to production environment.
+		- 
