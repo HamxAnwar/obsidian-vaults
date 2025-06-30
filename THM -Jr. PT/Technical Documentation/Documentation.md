@@ -1,0 +1,3 @@
+- Every tool and CVE needs to have a well organized documentation.
+- What is the netstat parameter in MS Windows that displays the executable associated with each active connection and listening port?
+	- ```-b```

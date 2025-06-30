@@ -1,0 +1,8 @@
+- Social media is the go to place to find about many users.
+	- Twitter
+	- Facebook
+	- LinkedIn
+- Exploring social media platforms without making an account is ideal but would limit the experience.
+- When temporarily exploring a platform, we can make an account from a temporary emails which can be discarded after the reconnaissance.
+- It helps prevent our contacts to connect to us while performing exploration.
+- Social media is important to know about the targets.
