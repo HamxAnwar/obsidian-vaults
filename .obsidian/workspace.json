@@ -4,123 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "172cc2187f439aeb",
+        "id": "90afe85327a3d1eb",
         "type": "tabs",
         "children": [
           {
-            "id": "3aad27120f9f1708",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM -Jr. PT/Introduction to Pentesting/Principles of Security.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Principles of Security"
-            }
-          },
-          {
-            "id": "48c21a2b55b371da",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM -Jr. PT/Introduction to Pentesting/Manual walking of a web application through browser.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Manual walking of a web application through browser"
-            }
-          },
-          {
-            "id": "a0aae3207b08e527",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "British Council/British Council - Meeting minutes (DAY - 1).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "British Council - Meeting minutes (DAY - 1)"
-            }
-          },
-          {
-            "id": "58112a990d9bb0d2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM -Jr. PT/Introduction to Pentesting/Principles of Security.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Principles of Security"
-            }
-          },
-          {
-            "id": "320d621e8580c5a3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM -Jr. PT/Search engines/Search engines.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Search engines"
-            }
-          },
-          {
-            "id": "7d8a075337474d1d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM -Jr. PT/Introduction to Pentesting/Vulnerability and exploits.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Vulnerability and exploits"
-            }
-          },
-          {
-            "id": "cb83e2034bfba53f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM -Jr. PT/Technical Documentation/Documentation.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Documentation"
-            }
-          },
-          {
-            "id": "506aebb382156605",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "THM -Jr. PT/Social media/Media platforms.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Media platforms"
-            }
-          },
-          {
-            "id": "d5e9012b60ab0444",
+            "id": "a4b5744cb6192d77",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -133,8 +21,7 @@
               "title": "Active directory"
             }
           }
-        ],
-        "currentTab": 8
+        ]
       }
     ],
     "direction": "vertical"
@@ -191,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "d1ceb3dd561dff30",
@@ -277,25 +165,26 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d5e9012b60ab0444",
+  "active": "a4b5744cb6192d77",
   "lastOpenFiles": [
-    "Pasted image 20250630084150.png",
-    "THM -Jr. PT/Social media/Media platforms.md",
+    "Pasted image 20250630173228.png",
     "THM -Jr. PT/Active Directory/Active directory.md",
-    "THM -Jr. PT/Active Directory",
+    "THM -Jr. PT/Social media/Media platforms.md",
     "THM -Jr. PT/Technical Documentation/Documentation.md",
-    "THM -Jr. PT/Social media",
     "THM -Jr. PT/Introduction to Pentesting/Vulnerability and exploits.md",
+    "THM -Jr. PT/Search engines/Search engines.md",
+    "THM -Jr. PT/Introduction to Pentesting/Principles of Security.md",
+    "British Council/British Council - Meeting minutes (DAY - 1).md",
+    "THM -Jr. PT/Introduction to Pentesting/Manual walking of a web application through browser.md",
+    "Pasted image 20250630084150.png",
+    "THM -Jr. PT/Active Directory",
+    "THM -Jr. PT/Social media",
     "THM -Jr. PT/Technical Documentation",
     "THM -Jr. PT/Search engines/Specialized Search Engines.md",
-    "THM -Jr. PT/Search engines/Search engines.md",
     "THM -Jr. PT/Search engines",
-    "THM -Jr. PT/Introduction to Pentesting/Principles of Security.md",
-    "THM -Jr. PT/Introduction to Pentesting/Manual walking of a web application through browser.md",
     "THM -Jr. PT/Introduction to Pentesting/Content Discovery.md",
     "README.md",
     "British Council/Job descriptions.md",
-    "British Council/British Council - Meeting minutes (DAY - 1).md",
     "British Council",
     "Pasted image 20250622222449.png",
     "Thread modelling.md",

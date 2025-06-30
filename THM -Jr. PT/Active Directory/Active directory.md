@@ -11,3 +11,45 @@
 #### Advantages of AD
 - **Centralized identity management:** All users across the network can be configured from Active Directory with minimum effort.
 - **Managing security policies:** You can configure security policies directly from Active Directory and apply them to users and computers across the network as needed.
+
+- Core of any window domain is the active directory domain services (AD DS).
+- Objects supported by AD:
+	- Users
+		- most comment object
+		- known as security principals
+		- can be authenticated by the domain
+		- can be assigned privileges over resources like files, printers, etc.
+		- Users can be either:
+			- People
+			- Services
+				- MYSQL, IIS, etc.
+			- Every single service requires a user to run, but service users are different from regular users as they will only have the privileges needed to run their specific service.
+	- Security groups
+		- We can define security groups, give them privileges and all users in that group have the same privilege.
+		- Groups can have both users and machines as members. If needed, groups can include other groups as well.
+		- ![[Pasted image 20250630173228.png]]
+		- There are various OUs already configured as default including:
+			- **Builtin:** Contains default groups available to any Windows host.
+			- **Computers:** Any machine joining the network will be put here by default. You can move them if needed.
+			- **Domain Controllers:** Default OU that contains the DCs in your network.
+			- **Users:** Default users and groups that apply to a domain-wide context.
+			- **Managed Service Accounts:** Holds accounts used by services in your Windows domain.
+	- #### Security Groups vs OUs
+		- You are probably wondering why we have both groups and OUs. While both are used to classify users and computers, their purposes are entirely different:
+			- **OUs** are handy for **applying policies** to users and computers, which include specific configurations that pertain to sets of users depending on their particular role in the enterprise. Remember, a user can only be a member of a single OU at a time, as it wouldn't make sense to try to apply two different sets of policies to a single user.
+			- **Security Groups**, on the other hand, are used to **grant permissions over resources**. For example, you will use groups if you want to allow some users to access a shared folder or network printer. A user can be a part of many groups, which is needed to grant access to multiple resources.
+	- Machines
+		- Every computer that joins the active directory domain, a machine object is created.
+		- Also considered security principals.
+		- Has some what limited rights.
+		- machine accounts are local administrators.
+		- Generally, no one is supposed to access these accounts. If you have the password, you can use it though... Cyber security...
+		- **Note:** Machine Account passwords are automatically rotated out and are generally comprised of 120 random characters.
+		- Identifying machine accounts is relatively easy. They follow a specific naming scheme. The machine account name is the computer's name followed by a dollar sign. For example, a machine named `DC01` will have a machine account called `DC01$`.
+	- Printers
+	- Shares
+	- many others...
+#### Active Directory Users and Computers
+- To configure users, groups or machines in Active Directory, we need to log in to the Domain Controller and run "Active Directory Users and Computers" from the start menu.
+- We can see hierarchy of users, computers and groups.
+- Organized in container objects called **Organizational Units (OUs)** that allows to classify users and machines.
