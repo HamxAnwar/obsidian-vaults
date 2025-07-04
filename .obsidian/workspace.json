@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "THM -Jr. PT/Active Directory/Active directory.md",
+                "file": "THM -Jr. PT/Networking/Network Secure Protocols.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Active directory"
+              "title": "Network Secure Protocols"
             }
           }
         ]
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "d1ceb3dd561dff30",
@@ -167,8 +166,22 @@
   },
   "active": "a4b5744cb6192d77",
   "lastOpenFiles": [
-    "Pasted image 20250630173228.png",
+    "THM -Jr. PT/Networking/Networking Core Protocols.md",
+    "THM -Jr. PT/Networking/Network Secure Protocols.md",
+    "THM -Jr. PT/Networking/Untitled",
+    "THM -Jr. PT/Networking/Networking Essentials.md",
+    "Pasted image 20250704002445.png",
+    "Pasted image 20250703224247.png",
+    "Pasted image 20250703223810.png",
+    "THM -Jr. PT/Networking/Networking Concepts.md",
+    "Pasted image 20250703212006.png",
+    "THM -Jr. PT/Command Line/Linux Shell.md",
+    "THM -Jr. PT/Networking",
+    "THM -Jr. PT/Command Line/PowerShell.md",
+    "THM -Jr. PT/Command Line/CMD.md",
     "THM -Jr. PT/Active Directory/Active directory.md",
+    "THM -Jr. PT/Command Line",
+    "Pasted image 20250630173228.png",
     "THM -Jr. PT/Social media/Media platforms.md",
     "THM -Jr. PT/Technical Documentation/Documentation.md",
     "THM -Jr. PT/Introduction to Pentesting/Vulnerability and exploits.md",

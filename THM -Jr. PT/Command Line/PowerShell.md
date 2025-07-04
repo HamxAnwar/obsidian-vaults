@@ -1,0 +1,73 @@
+- Commands of a powershell are known as cmdlets or commandlets.
+- Follows a consistent verb-noun convention.
+	- Verb : action.
+	- Noun : Object on which the action is to be performed.
+	- **Get-Content**: Retrieves (gets) the content of a file and displays it in the console.
+	- **Set-Location**: Changes (sets) the current working directory.
+	- **Get-Command**: Gets the commands and scripts that can be executed.
+	- Based on the command type, we can filter out the commands as:
+		`Get-Command -CommandType "Function"`
+	- **Get-Help**: Equivalent to `man` command in linux terminal.
+	- **Get-Alias**: Gets the aliases for many of the commands known for the cmd.
+		- `dir` = `Get-ChildItem`
+		- `cd` = `Set-Location`
+	- We can add additional cmdlets from various online repositories.
+		- We can find additional repositories using `Find-Module`
+		- Not knowing the exact name, we can use wildcards with a partial name such as:
+				`Cmdlet -Property "pattern*"`
+				`Find-Module -Name "PowerShell*"`
+		- After we know the name of the module:
+				`Install-Module -Name "PowerShellGet"`
+	- `Get-ChildItem -Path "Path_to_file/folder"`
+	- `Set-Location -Path "Path_to_file/folder"`
+	- `New-Item -Path "Path_to_file/folder" -ItemType "File/Directory"`
+	- `Remove-Item -Path "Path_to_file/folder"`
+	- `Copy-Item -Path "Path_to_file/folder"`
+	- `Get-Content -Path "Path_to_file.txt"`
+- Piping, Filtering and Sorting Data
+	- Piping is a technique used to provide the output of one command to the input of another command.
+	- Shown by `|`
+	- In PS, piping passes objects rather than text.
+	- `Get-ChildItem | Sort-Object Length`
+		- Get `Get-ChildItem` retrieves the files as objects and the pipe send those objects to Sort-Object, which then sorts them by their length (size) property.
+	- For example:
+		- To list only txt files:
+			`Get-ChildItem | Where-Object -Property "Extension" -eq ".txt"`
+	- As we see the `-eq` operator, there are many other comparison operators as below:
+		- `-ne`: not equal to
+		- `-gt`: greater than
+		- `-ge`: greater than or equal to
+		- `-lt`: less than
+		- `-le`: less than or equal to
+	- `Get-ChildItem | Select-Object Name,Length`
+		- Gives the contents of the directory based on the `Select-Object` properties.
+		- Useful to refine the output to show only the required details.
+	- `Select-String`
+		- Finds the given string within a file.
+	- `Get-ChildItem | Where-Object -Property Length -gt 100`
+		- Returns files with size greater than 100.
+- System and Network Information
+	- `Get-ComputerInfo`
+		- Retrieves comprehensive system information including OS information, hardware specs, BIOS details, etc.
+	- `Get-LocalUser`
+		- Lists all local user accounts on the system.
+	- `Get-NetIPConfiguration`
+		- Provides the detailed information about network interfaces on the system.
+		- Includes IP addresses, DNS servers, gateway configurations, etc.
+		- Similar to ipconfig / ifconfig / ip a.
+	- `Get-NetIPAddress`
+		- Gives specific details of all IP addresses configured on the system.
+		- Includes non-active IPs.
+- Real-time system analysis
+	- `Get-Process`: gives detailed view of all running processes.
+		- GPU, memory usage, etc.
+	- `Get-Service`: Gives services - running, stopped or paused.
+		- Used by system administrators for troubleshooting.
+		- Used by forensic analysts hunting for anomalous services installed on the system.
+	- `Get-NetTCPConnection`: Displays current TCP connections.
+		- Gives insight to both local and remote endpoints.
+		- Handy during incident response or malware analysis task.
+		- It can uncover hidden backdoors or established connections towards an attacker-controlled server.
+	- `Get-FileHash`: Generates file hashes.
+		- Useful during incident response, threat hunting, and malware analysis.
+		- Get-FileHash -Path <Path_To_txt_File>
