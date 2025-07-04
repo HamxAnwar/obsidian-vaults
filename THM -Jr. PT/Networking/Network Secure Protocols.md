@@ -1,0 +1,3 @@
+- Important online transactions are risky without ensuring confidentiality, integrity and authenticity.
+- Transport Layer Security (TLS) is also added to the existing protocols to protect communication CIA triad.
+- Transport Layer Security (TLS) is added to existing protocols to protect communication confidentiality, integrity, and authenticity. Consequently, HTTP, POP3, SMTP, and IMAP become HTTPS, POP3S, SMTPS, and IMAPS, where the appended “S” stands for Secure. We will examine these protocols and the benefits we reaped from TLS.
