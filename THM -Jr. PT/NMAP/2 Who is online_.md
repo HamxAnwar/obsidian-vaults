@@ -1,0 +1,29 @@
+- Starting with Nmap and the first question...
+	- Who is online?
+- Nmap uses different techniques to specify the network / host.
+	- `-`: Give IP range such as `192.168.16.10-50`
+	- `/`: Give subnet such as `192.168.16.1/24`
+	- Can give the hostname directly such as `example.thm`
+- Always start nmap with root or sudo.
+- We can scan the complete IP network such as 192.168.16.0
+- For local networks, Nmap uses ICMP requests and ARP requests.
+- For directly connected networks, Nmap uses ARP request.
+- For remote networks (a network where we have atleast one router between the two networks), we cannot use ARP requests. So what does it use?
+	- While nmaping a remote network, we see:
+		- `192.168.11.1` is live and responded to the ICMP echo (ping) request.
+		- `192.168.11.2` seems down.
+			- Nmap sent:
+				- two ICMP echo (ping) requests
+				- two ICMP timestamp requests
+				- two TCP packets to port 443 with the SYN flag set
+				- two TCP packets to port 80 with the ACK flag set.
+				- The target didn’t respond to any.
+- Arguments:
+	- `-sn`: Ping scan. For local networks, it gives MAC addresses too. (default if no argument is provided)
+	- `-PS[portlist]`: TCP Syn discovery via given ports.
+	- `-PA[portlist]`: TCP Ack discovery via given ports.
+	- `-PU[portlist]`: UDP discovery via given ports.
+	- `-sL`: List scan. This scan only lists the targets to scan without actually scanning them.
+		- Helps confirm targets before actually scanning them.
+- Though `-sn` only scans the live hosts by pinging what services are running, it doesn't give back the services. That makes it very quiet scan.
+	- To know what services are running on a host, we need a more noisy type of scan.

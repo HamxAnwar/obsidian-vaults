@@ -1,0 +1,7 @@
+- In the room, execute `chromium-ssl-key-log-file=~/ssl-key.log`
+	- This will dump the ssl key to the file **ssl-key.log**
+- Packet to be analyzed: **randy-chromium.pcapng**
+- Open packet in wireshark
+- Right click on any TLS packet => Protocol preferences => Transport layer security => Open transport layer security preferences.
+- (Pre)-Master-Secret log filename => Browse and give the ssl key log file.
+- For the room, decrypt the packet contain login credentials.

@@ -1,0 +1,4 @@
+- Connected to the internet, two questions arises.
+	- Which devices are online?
+	- What services and their versions are running on these devices?
+- The solution to the above is Nmap.

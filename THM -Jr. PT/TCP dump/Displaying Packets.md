@@ -1,0 +1,7 @@
+- TCPdump is a rich program with many ways to display packets.
+	- `-q`: quick output, prints brief packet information.
+	- `-e`: print link level header. Adds MAC addresses in the output.
+	- `-A`: show data in ASCII.
+	- `-xx`: show packet data in hexadecimal format, referred to as hex.
+	- `-X`: show packet headers and data in hex and ASCII.
+- 
