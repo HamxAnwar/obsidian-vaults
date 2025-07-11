@@ -11,10 +11,14 @@
             "id": "96a01040e6335523",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "THM -Jr. PT/Cryptography basics/Introduction.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Introduction"
             }
           }
         ]
@@ -162,6 +166,9 @@
   },
   "active": "96a01040e6335523",
   "lastOpenFiles": [
+    "THM -Jr. PT/Cryptography basics/Introduction.md",
+    "THM -Jr. PT/Cryptography basics/Untitled",
+    "THM -Jr. PT/Cryptography basics",
     "THM -Jr. PT/NMAP/Summary.md",
     "THM -Jr. PT/NMAP/6 Output Display.md",
     "Pasted image 20250706114820.png",
@@ -204,9 +211,6 @@
     "THM -Jr. PT/Active Directory/Active directory.md",
     "THM -Jr. PT/Command Line",
     "THM -Jr. PT/Social media/Media platforms.md",
-    "THM -Jr. PT/Technical Documentation/Documentation.md",
-    "THM -Jr. PT/Active Directory",
-    "THM -Jr. PT/Social media",
-    "THM -Jr. PT/Technical Documentation"
+    "THM -Jr. PT/Active Directory"
   ]
 }
