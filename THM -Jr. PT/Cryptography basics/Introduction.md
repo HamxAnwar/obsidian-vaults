@@ -23,4 +23,81 @@
 - Stated from Egypt in 1900 BCE.
 - More smaller spaces:
 	- **Ceaser Cipher** shift each letter by a certain number to encrypt the message.
-	- 
+	- Consider the following example:
+		- Plaintext: `TRYHACKME`
+		- Key: 3 (Assume it is a right shift of 3.)
+		- Cipher: Caesar Cipher
+	- We can easily figure out that T becomes W, R becomes U, Y becomes B, and so on. As you noticed, once we reach Z, we start all over, as shown in the figure below. Consequently, we get the ciphertext of `WUBKDFNPH`.
+	- To decipher, we need the left shift with the same number of keys.
+	- To use the ceaser cipher, we can only range the key to 25 since 26th will give the same alphabet.
+	- Ceaser cipher is considered insecure.
+- Some more historical ciphers include:
+	- The Vigenère cipher from the 16th century.
+	- The Enigma machine from World War II.
+	- The one-time pad from the Cold War.
+#### Types of Encryption
+- Two main categories of encryption:
+	- Symmetric
+	- Asymmetric
+- **Symmetric Encryption**
+	- Uses same key to encrypt and decrypt the data.
+	- Keeping the key a secret is a must.
+	- aka *private key cryptography*
+	- Requires secure communication channels to communicate the key to the required parties.
+		- A significant challenge if there are many recipients.
+	- Examples of symmetric encryption
+		- DES (Data Encryption Standard)
+			- Adopted as a standard in 1977 and uses a 56-bit key. With the advancement in computing power, in 1999, a DES key was successfully broken in less than 24 hours, motivating the shift to 3DES.
+		- 3DES (Triple DES)
+			- DES applied three times; consequently, the key size is 168 bits, though the effective security is 112 bits. 3DES was more of an adhoc solution when DES was no longer considered secure. 3DES was deprecated in 2019 and should be replaced by AES; however, it may still be found in some legacy systems.
+		- AES (Advanced Encryption Standard)
+			- Adopted as a standard in 2001. Its key size can be 128, 192, or 256 bits.
+	- There are many more symmetric encryption ciphers used in various applications; however, they have not been adopted as standards.
+- **Asymmetric Encryption**
+	- Asymmetric encryption uses two keys.
+		1. For encryption
+		2. For decryption
+	- Uses public key for encryption so it is called public-key cryptography.
+	- Examples:
+		- RSA
+		- Diffie-Hellman
+		- Elliptic Curve cryptography (ECC)
+	- The two keys involved in the process are referred to as a **public key** and a **private key**.
+	- Data encrypted with the public key can be decrypted with the private key.
+		- Your private key needs to be kept private, hence the name.
+	- **Slower**: Asymmetric encryption ciphers use larger keys as compared to symmetric encryption.
+	- **RSA**: 2048-bit, 3072-bit, and 4096-bit keys
+		- Recommended size: 2048-bit
+	- **Diffie-Hellman**: 3072-bit and 4096-bit keys for enhanced security. 
+		- Recommended size: 2048-bit
+	- ECC can achieve equivalent security with shorter keys.
+		- With 256-bit key, ECC provides a level of security comparable to a 3072-bit RSA key.
+	- A particular mathematical problem: Easy to compute in one direction but difficult to reverse.
+#### Basic maths
+- Two basic operations mostly used:
+	- XOR operation
+	- Modulo operation
+- **XOR Operation**
+	- Short for exclusive-OR
+	- Logical operaion
+	- Compares two bits and *returns 1* if *the bits are different*
+	- Symbols: ⊕ or ^
+	- *XOR in Cryptography*
+		- Severral interesting properties for cryptography and error detection.
+		- Applying XOR to a value with itself results in 0.
+			- A ⊕ A = 0
+		- Applying XOR to any value with 0 results in the value unchanged.
+			- A ⊕ 0 = A
+		- Commutative
+			- A ⊕ B = B ⊕ A
+		- Associative
+			- (A ⊕ B) ⊕ C = A ⊕ (B ⊕ C)
+		- Consider we have two binary values.
+			- P is the plaintext
+			- K is the secret key
+			- The ciphertext is C = P ⊕ K
+			- If we know C and K, we can recover P.
+				- C ⊕ K = (P ⊕ K) ⊕ K
+				- But we know that (P ⊕ K) ⊕ K = P ⊕ (K ⊕ K)
+				- K ⊕ K = 0; consequently, (P ⊕ K) ⊕ K = P ⊕ (K ⊕ K) = P ⊕ 0 = P
+- **Modulo operation**
