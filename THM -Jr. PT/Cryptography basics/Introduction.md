@@ -101,3 +101,11 @@
 				- But we know that (P ⊕ K) ⊕ K = P ⊕ (K ⊕ K)
 				- K ⊕ K = 0; consequently, (P ⊕ K) ⊕ K = P ⊕ (K ⊕ K) = P ⊕ 0 = P
 - **Modulo operation**
+	- Denoted by `%` or `mod`.
+	- `X % Y` gives the `remainder of X divided by Y`.
+	- 25%5 = 0 because 25 divided by 5 is 5, with a remainder of 0, i.e., 25 = 5 × 5 + 0
+	- 23%6 = 5 because 23 divided by 6 is 3, with a remainder of 5, i.e., 23 = 3 × 6 + 5
+	- 23%7 = 2 because 23 divided by 7 is 3 with a remainder of 2, i.e., 23 = 3 × 7 + 2
+	- The modulo operation always returns a non-negative result less than the divisor.
+	- This means that for any integer _a_ and positive integer _n_, the result of _a_%_n_ will always be in the range 0 to _n_ − 1.
+	- 
