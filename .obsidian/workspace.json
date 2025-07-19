@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "THM -Jr. PT/Cryptography basics/Introduction.md",
+                "file": "THM -Jr. PT/Cryptography basics/1. Introduction.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Introduction"
+              "title": "1. Introduction"
             }
           }
         ]
@@ -164,9 +164,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "96a01040e6335523",
+  "active": "8b693a5bd6d13e5f",
   "lastOpenFiles": [
-    "THM -Jr. PT/Cryptography basics/Introduction.md",
+    "THM -Jr. PT/Cryptography basics/1. Introduction.md",
+    "THM -Jr. PT/Cryptography basics/1. Introduction.md",
+    "THM -Jr. PT/Cryptography basics/2. Public Key Cryptography Basics - Asymmetric Cryptography.md",
     "THM -Jr. PT/Cryptography basics/Untitled",
     "THM -Jr. PT/Cryptography basics",
     "THM -Jr. PT/NMAP/Summary.md",
@@ -208,9 +210,7 @@
     "THM -Jr. PT/Networking",
     "THM -Jr. PT/Command Line/PowerShell.md",
     "THM -Jr. PT/Command Line/CMD.md",
-    "THM -Jr. PT/Active Directory/Active directory.md",
     "THM -Jr. PT/Command Line",
-    "THM -Jr. PT/Social media/Media platforms.md",
     "THM -Jr. PT/Active Directory"
   ]
 }
