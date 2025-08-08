@@ -1,0 +1,32 @@
+- **Cryptography**: Science of securing communication in the presence of adversaries.
+- **Cryptanalysis**: How to break or bypass cryptographic systems.
+- **Brute-Force attack**: Trying every possible combination of passwords.
+- **Dictionary attack**: When we most likely know that the password is most likely a word in a list, it makes sense that we should try every wordin that dictionary insteadof every possible combination.
+- We talked about:
+	- Cryptography
+	- Symmetric cryptography
+	- Asymmetric cryptography
+	- Key exchange
+	- RSA
+	- Diffie-Hellman
+	- SSH key pairs
+	- Digital signatures
+	- Certificates
+	- OpenGPG (PGP / GPG)
+- **Hashing**
+	- A process that takes input data and produces a hash value, a fixed-size string of characters, also referred to as digest.
+	- Uniquely represents the data
+		- Any change in the data, no matter how small, should lead to a change in the hash value.
+	- Hashing should not be confused with encryption or encoding; hashing is one-way, and you can’t reverse the process to get the original data.
+- **Encoding**
+	- Converts data from one form to another to make it compatible with a specific system.
+	- ASCII, UTF-8, UTF-16, UTF-32, ISO-8859-1, and Windows-1252 are valid encoding methods for the English language.
+	- UTF-8, UTF-16, and UTF-32 are Unicode encodings, and they can represent characters from other languages, such as Arabic and Japanese.
+	- Another type of encoding commonly used when sending or saving data is not for any specific language.
+		- For e.g. Base32 and Base64 encoding.
+	- Encoding should not be confused with encryption.
+	- Using a specific encoding does not protect the confidentiality of the message.
+	- Encoding is reversible; anyone can change the data encoding with the right tools.
+- **Encryption**
+	- Protects data confidentiality using a cryptographic cipher and a key.
+	- Encryption is reversible, provided we know the cipher and can access the key.
